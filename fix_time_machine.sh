@@ -57,6 +57,10 @@ echo "identified HFS(X) volume as $HFS_DISK"
 echo "\n"
 date
 echo 'fsck...'
+
+fsck_hfs -p $HFS_DISK
+# this additional step is rarely required by relatively quick and unlocks readonly drive under some conditions
+
 fsck_hfs -drfy $HFS_DISK
 # this was to wait for the log to finish before we ran fsck explicitly, as above
 # grep -q 'was repaired successfully|could not be repaired' <(tail -f -n 0 /var/log/fsck_hfs.log)
